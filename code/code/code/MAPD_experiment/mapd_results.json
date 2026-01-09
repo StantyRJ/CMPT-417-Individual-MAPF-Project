@@ -1,0 +1,85 @@
+{
+    "Experiment 1": {
+        "1": {
+            "mean_runtime": 0.0020155906677246094,
+            "mean_conflicts": 0.0,
+            "mean_completed": 7.0,
+            "mean_makespan": 801.0,
+            "mean_avg_latency": 6.285714285714286
+        },
+        "2": {
+            "mean_runtime": 0.0033349990844726562,
+            "mean_conflicts": 5.0,
+            "mean_completed": 24.0,
+            "mean_makespan": 801.0,
+            "mean_avg_latency": 5.875
+        },
+        "4": {
+            "mean_runtime": 0.0029985904693603516,
+            "mean_conflicts": 3.0,
+            "mean_completed": 13.0,
+            "mean_makespan": 801.0,
+            "mean_avg_latency": 4.461538461538462
+        },
+        "6": {
+            "mean_runtime": 0.002987384796142578,
+            "mean_conflicts": 5.0,
+            "mean_completed": 14.0,
+            "mean_makespan": 801.0,
+            "mean_avg_latency": 4.285714285714286
+        },
+        "8": {
+            "mean_runtime": 0.004352728525797526,
+            "mean_conflicts": 16.0,
+            "mean_completed": 27.0,
+            "mean_makespan": 801.0,
+            "mean_avg_latency": 4.925925925925926
+        }
+    },
+    "Experiment 2": {
+        "0.1": {
+            "mean_runtime": 0.018343607584635418,
+            "mean_conflicts": 2.6666666666666665,
+            "mean_completed": 12.0,
+            "mean_avg_latency": 4.403418803418803
+        },
+        "0.5": {
+            "mean_runtime": 0.019673824310302734,
+            "mean_conflicts": 3.0,
+            "mean_completed": 10.333333333333334,
+            "mean_avg_latency": 5.0945720945720945
+        },
+        "1.0": {
+            "mean_runtime": 0.01965777079264323,
+            "mean_conflicts": 6.333333333333333,
+            "mean_completed": 9.0,
+            "mean_avg_latency": 4.8157768157768155
+        },
+        "1.5": {
+            "mean_runtime": 0.022333860397338867,
+            "mean_conflicts": 1.3333333333333333,
+            "mean_completed": 7.333333333333333,
+            "mean_avg_latency": 4.5888888888888895
+        },
+        "2.0": {
+            "mean_runtime": 0.019665082295735676,
+            "mean_conflicts": 1.0,
+            "mean_completed": 6.333333333333333,
+            "mean_avg_latency": 4.594444444444444
+        }
+    },
+    "Experiment 3": {
+        "CBS-MAPD": {
+            "mean_runtime": 0.0023328463236490884,
+            "mean_conflicts": 7.0,
+            "mean_makespan": 1001.0,
+            "mean_avg_latency": 6.777777777777778
+        },
+        "Space-Time A*": {
+            "mean_runtime": 0.002999464670817057,
+            "mean_conflicts": 40.666666666666664,
+            "mean_makespan": 1001.0,
+            "mean_avg_latency": 6.777777777777778
+        }
+    }
+}

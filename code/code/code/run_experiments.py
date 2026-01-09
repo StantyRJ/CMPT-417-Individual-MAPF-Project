@@ -39,12 +39,11 @@ def import_mapf_instance(filename):
     if not f.is_file():
         raise BaseException(filename + " does not exist.")
     f = open(filename, 'r')
-    # first line: #rows #columns
+
     line = f.readline()
     rows, columns = [int(x) for x in line.split(' ')]
     rows = int(rows)
     columns = int(columns)
-    # #rows lines with the map
     my_map = []
     for r in range(rows):
         line = f.readline()
@@ -54,19 +53,38 @@ def import_mapf_instance(filename):
                 my_map[-1].append(True)
             elif cell == '.':
                 my_map[-1].append(False)
-    # #agents
+
     line = f.readline()
     num_agents = int(line)
-    # #agents lines with the start/goal positions
     starts = []
-    goals = []
+    goals = [] 
+
     for a in range(num_agents):
         line = f.readline()
-        sx, sy, gx, gy = [int(x) for x in line.split(' ')]
+        sx, sy = [int(x) for x in line.split(' ')]
         starts.append((sx, sy))
-        goals.append((gx, gy))
+        goals.append((sx, sy))
+
+    line = f.readline()
+    num_tasks = int(line)
+    tasks = []
+    for task_id in range(num_tasks):
+        line = f.readline()
+        arrival_t, pr, pc, dr, dc = [int(x) for x in line.split(' ')]
+        
+        task = {
+            'id': task_id,
+            'arrival_time': arrival_t,
+            'pickup_loc': (pr, pc),
+            'delivery_loc': (dr, dc),
+            'assigned_agent': None,
+            'status': 'unassigned'
+        }
+        tasks.append(task)
+        
     f.close()
-    return my_map, starts, goals
+
+    return my_map, starts, goals, tasks
 
 
 if __name__ == '__main__':
@@ -88,20 +106,20 @@ if __name__ == '__main__':
     for file in sorted(glob.glob(args.instance)):
 
         print("***Import an instance***")
-        my_map, starts, goals = import_mapf_instance(file)
+        my_map, starts, goals, tasks = import_mapf_instance(file)
         print_mapf_instance(my_map, starts, goals)
 
         if args.solver == "CBS":
             print("***Run CBS***")
-            cbs = CBSSolver(my_map, starts, goals)
+            cbs = CBSSolver(my_map, starts, goals, tasks)
             paths = cbs.find_solution(args.disjoint)
         elif args.solver == "Independent":
             print("***Run Independent***")
-            solver = IndependentSolver(my_map, starts, goals)
+            solver = IndependentSolver(my_map, starts, goals) 
             paths = solver.find_solution()
         elif args.solver == "Prioritized":
             print("***Run Prioritized***")
-            solver = PrioritizedPlanningSolver(my_map, starts, goals)
+            solver = PrioritizedPlanningSolver(my_map, starts, goals, tasks)
             paths = solver.find_solution()
         else:
             raise RuntimeError("Unknown solver!")
@@ -112,7 +130,6 @@ if __name__ == '__main__':
 
         if not args.batch:
             print("***Test paths on a simulation***")
-            animation = Animation(my_map, starts, goals, paths)
-            # animation.save("output.mp4", 1.0)
+            animation = Animation(my_map, starts, goals, paths, tasks) 
             animation.show()
     result_file.close()
